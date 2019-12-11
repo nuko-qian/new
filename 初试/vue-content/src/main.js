@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import Axios from 'axios'
-import Api from './api/index'
+import Api from './api/index' // 引入api
 
 /* 引入初始化样式 */
 import './style/index.scss'

@@ -20,6 +20,26 @@
 
 
 
+###git操作命令:
+
+git init //初始化本地git环境
+
+git status //  查看状态
+
+git clone XXX//克隆一份代码到本地仓库  xxx为地址链接
+
+git pull //把远程库的代码更新到工作台
+
+git fetch //把远程库的代码更新到本地库
+
+git add . //把本地的修改加到stage中
+
+git commit -m 'comments here' //把stage中的修改提交到本地库
+
+git push //把本地库的修改提交到远程库中
+
+
+
 ### 用vue cli4.0 搭建vue项目
 
 1 以搭建 vue-content为名的vue前端项目为例
@@ -28,14 +48,17 @@
 
 2 手动选择配置
 
-![手动选择配置.png](C:Users/Administrator/Desktop/截图/手动选择配置.png"手动选择")
-
-
-
-
-
-
+![手动.png](C:/Users/Administrator/Desktop/截图/手动.png)
 
 3 选择完后,等待安装完成
 
+![选择1.png](C:/Users/Administrator/Desktop/截图/选择1.png)
+
+4.脚手架安装完成
+
+![完成.png](C:/Users/Administrator/Desktop/截图/完成.png)
+
+
+
 4 安装依赖 npm install
+

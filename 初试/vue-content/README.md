@@ -27,4 +27,5 @@ npm run serve
 5.回到原来界面,通过 del接口来完成删除操作
 6.在add页面上用updata完成修改,并在原界面使用type属性 区分add和updata
 7.使用queryName接口完成查询 
+8.再加个重置与查询相配
 

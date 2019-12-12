@@ -114,7 +114,7 @@ export default {
     /* 修改 */
     update (scope) {
       console.log(scope)
-      this.$router.push({ path: '/add', query: { ...scope, type: 'update' } })
+      this.$router.push({ path: '/add', query: { ...scope, type: 'update' } }) // 传递
     },
     /* 搜索 */
     queryName () {

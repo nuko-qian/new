@@ -57,7 +57,7 @@ export default {
         if (!vali) {
           return
         }
-        let type = this.$route.query.type
+        let type = this.$route.query.type //接收
         let str = {
           add: '此操作将新增,是否继续?',
           update: '此操作将编辑,是否继续?'

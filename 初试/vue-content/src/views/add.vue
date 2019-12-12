@@ -17,15 +17,15 @@
 
 export default {
   data () {
-    function validPhone (r, v, cb) {
-      let reg = /^[\u4e00-\u9fa5]+$/
-      // console.log(reg.test(value))
-      if (reg.test(v)) {
-        cb()
-      } else {
-        cb(new Error('请输入中文'))
-      }
-    }
+    /*   function validPhone (r, v, cb) {
+        let reg = /^[\u4e00-\u9fa5]+$/
+        // console.log(reg.test(value))
+        if (reg.test(v)) {
+          cb()
+        } else {
+          cb(new Error('请输入中文'))
+        }
+      } */
     return {
       form: {
         name: '',
@@ -34,8 +34,8 @@ export default {
       rules: {
         name: [
           { required: true, message: '请输入名字', trigger: 'blur' },
-          // { pattern: /^[\u4e00-\u9fa5]+$/, message: '请输入中文', trigger: 'blur' }
-          { trigger: 'blur', validator: validPhone }
+          { pattern: /^[\u4e00-\u9fa5]+$/, message: '请输入中文', trigger: 'blur' }
+          // { trigger: 'blur', validator: validPhone }
         ],
         age: [
           { required: true, message: '请输入年龄', trigger: 'blur' },
@@ -44,8 +44,8 @@ export default {
       }
     }
   },
-  created () {
-    console.log(this.$route.query, 7887687676) // 接收
+  created () { // 接收updata传过来的数据
+    console.log(this.$route.query, 7887687676) //  $route为接收
     this.form.name = this.$route.query.name
     this.form.age = this.$route.query.age
     this.form.id = this.$route.query.id
@@ -57,7 +57,7 @@ export default {
         if (!vali) {
           return
         }
-        let type = this.$route.query.type //接收
+        let type = this.$route.query.type // 接收
         let str = {
           add: '此操作将新增,是否继续?',
           update: '此操作将编辑,是否继续?'

@@ -51,6 +51,19 @@
           </template>
         </el-table-column>
       </el-table>
+      <template>
+        <div class="block">
+          <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage4"
+            :page-sizes="[100, 200, 300, 400]"
+            :page-size="100"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="400">
+          </el-pagination>
+        </div>
+      </template>
     </div>
 </div>
 </template>
@@ -72,7 +85,11 @@ export default {
           { required: true, message: '年龄不能为空' },
           { type: 'number', message: '年龄必须为数字值' }
         ]
-      }
+      },
+      currentPage1: 5,
+      currentPage2: 5,
+      currentPage3: 5,
+      currentPage4: 4
     }
   },
   created () {
@@ -114,7 +131,7 @@ export default {
     /* 修改 */
     update (scope) {
       console.log(scope)
-      this.$router.push({ path: '/add', query: { ...scope, type: 'update' } }) // 传递
+      this.$router.push({ path: '/add', query: { ...scope, type: 'update' } }) // $router传递
     },
     /* 搜索 */
     queryName () {
@@ -133,6 +150,12 @@ export default {
     },
     resetForm (formName) {
       this.$refs[formName].resetFields()
+    },
+    handleSizeChange (val) {
+      console.log(`每页 ${val} 条 `)
+    },
+    handleCurrentChange (val) {
+      console.log(`当前页: ${val}`)
     }
   }
 }
@@ -153,10 +176,15 @@ export default {
     }
   }
   .listTable {
+    background-color: #fff;
     .el-table {
       border: 1px solid #fff;
       margin: 0 auto;
       width: 875px;
+    }
+    .block {
+      margin: 10px 0;
+      text-align: center;
     }
   }
 }

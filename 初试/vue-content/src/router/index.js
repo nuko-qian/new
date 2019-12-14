@@ -12,8 +12,13 @@ const routes = [
   },
   {
     path: '/add',
-    name: '/add',
+    name: 'add',
     component: () => import('@/views/add.vue')
+  },
+  {
+    path: '/homelist',
+    name: 'homelist',
+    component: () => import('@/views/Homelist.vue')
   }
 ]
 

@@ -2,14 +2,22 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import Axios from 'axios'
-import Api from './api/index' // 引入api
+import Api from './api/index'
 
 /* 引入初始化样式 */
 import './style/index.scss'
 
 /* 引入element组件 */
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import 'element-ui/lib/theme-chalk/index.css' // 引入api
+
+// 全局前置守卫beforEach : 进去之前要做的事情
+router.beforeEach((to, from, next) => {
+  /*  console.log(to)
+   console.log(from)
+   console.log(next) */
+  next()
+})
 
 Vue.use(ElementUI)
 

@@ -1,95 +1,59 @@
 <template>
-<div class="listAdd">
-    <div class="listAddTop">
-      <!-- 添加按钮 -->
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="名字" prop="name" placeholder="请输入名字">
-          <el-input v-model="ruleForm.name"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button @click="queryName()">查询</el-button>
-          <el-button @click="reset()">重置</el-button>
-          <el-button type="primary" @click="add">点击添加</el-button>
-        </el-form-item>
-      </el-form>
-    </div>
-    <div class="listTable">
-      <!-- 渲染列表 -->
-      <el-table
-        :data="tableData" :header-cell-style="{background:'#F5F7FA',color:'#606266'}" border>
-        <el-table-column
-          type="index"
-          label="序号"
-          align="center"
-          width="70">
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="姓名"
-          align="center"
-          min-width="80">
-        </el-table-column>
-        <el-table-column
-          prop="id"
-          label="id"
-          align="center"
-          min-width="80">
-        </el-table-column>
-        <el-table-column
-          prop="age"
-          label="年龄"
-          align="center"
-          min-width="80">
-        </el-table-column>
-        <el-table-column
-          fixed="right"
-          label="操作"
-          width="100">
-          <template slot-scope="scope">
-            <el-button @click="del(scope.row.id)" type="text" size="small">删除</el-button>
-            <el-button @click="update(scope.row)" type="text" size="small">编辑</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-      <template>
-        <div class="block">
-          <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage4"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size="100"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="400">
-          </el-pagination>
-        </div>
-      </template>
-    </div>
-</div>
+  <div class="listAdd">
+      <div class="listAddTop">
+        <!-- 添加按钮 -->
+          <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+          <el-form-item label="名字" prop="name" placeholder="请输入名字">
+            <el-input v-model="ruleForm.name"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button>查询</el-button>
+            <el-button>重置</el-button>
+            <el-button type="primary" @click="add">点击添加</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+      <div class="listTable">
+        <!-- 渲染列表 -->
+        <template>
+          <el-table
+            :data="tableData"
+            height="250"
+            border>
+            <el-table-column
+              prop="name"
+              label="姓名"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="age"
+              label="年龄"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="id"
+              label="id"
+              width="180">
+            </el-table-column>
+          </el-table>
+        </template>
+      </div>
+  </div>
 </template>
 <script>
 export default {
   data () {
     return {
-      tableData: [],
-      ruleForm: {
-        age: '',
-        name: '',
-        id: ''
-      },
       rules: {
         name: [
           { required: true, message: '请输入名字', trigger: 'blur' }
-        ],
-        age: [
-          { required: true, message: '年龄不能为空' },
-          { type: 'number', message: '年龄必须为数字值' }
-        ]
-      },
-      currentPage1: 5,
-      currentPage2: 5,
-      currentPage3: 5,
-      currentPage4: 4
+        ] },
+      tableData: [],
+      ruleForm: {
+        name: '',
+        age: '',
+        id: ''
+      }
     }
   },
   created () {
@@ -106,56 +70,8 @@ export default {
         console.log(e)
       })
     },
-    /* 添加 */
     add () {
-      this.$router.push({ path: '/add', query: { type: 'add' } })
-    },
-    /* 删除 */
-    del (item) {
-      console.log(item)
-      this.$confirm('此操作将编辑,是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        let url = this.api.del + '?id=' + item
-        this.$http.get(url).then((res) => {
-          this.tableData = res.data.data
-          this.getList()
-        }).catch(e => {
-          console.log(e)
-        })
-      }).catch(() => {
-      })
-    },
-    /* 修改 */
-    update (scope) {
-      console.log(scope)
-      this.$router.push({ path: '/add', query: { ...scope, type: 'update' } }) // $router传递
-    },
-    /* 搜索 */
-    queryName () {
-      let url = this.api.queryName + '?name=' + this.ruleForm.name
-      this.$http.get(url).then((res) => {
-        console.log(res)
-        this.tableData = res.data.data
-      }).catch(e => {
-        console.log(e)
-      })
-    },
-    /* 重置 */
-    reset () {
-      this.ruleForm.name = ''
-      this.getList()
-    },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
-    },
-    handleSizeChange (val) {
-      console.log(`每页 ${val} 条 `)
-    },
-    handleCurrentChange (val) {
-      console.log(`当前页: ${val}`)
+      this.$router.push({ path: '/add' })
     }
   }
 }
@@ -179,8 +95,8 @@ export default {
     background-color: #fff;
     .el-table {
       border: 1px solid #fff;
-      margin: 0 auto;
-      width: 875px;
+      margin: 50px auto;
+      width: 720px;
     }
     .block {
       margin: 10px 0;

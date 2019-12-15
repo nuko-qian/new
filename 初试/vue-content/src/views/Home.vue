@@ -7,8 +7,8 @@
             <el-input v-model="ruleForm.name"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button>查询</el-button>
-            <el-button>重置</el-button>
+            <el-button  @click="queryName()">查询</el-button>
+            <el-button  @click="reset()">重置</el-button>
             <el-button type="primary" @click="add">点击添加</el-button>
           </el-form-item>
         </el-form>
@@ -18,7 +18,7 @@
         <template>
           <el-table
             :data="tableData"
-            height="250"
+            height="450"
             border>
             <el-table-column
               prop="name"
@@ -34,6 +34,15 @@
               prop="id"
               label="id"
               width="180">
+            </el-table-column>
+             <el-table-column
+              fixed="right"
+              label="操作"
+              width="100">
+              <template slot-scope="scope">
+                <el-button @click="del(scope.row.id)" type="text" size="small">删除</el-button>
+                <el-button @click="updata(scope.row)" type="text" size="small">编辑</el-button>
+              </template>
             </el-table-column>
           </el-table>
         </template>
@@ -71,7 +80,48 @@ export default {
       })
     },
     add () {
-      this.$router.push({ path: '/add' })
+      this.$router.push({ path: '/add', query: { type: 'add' } })
+    },
+    updata (scope) {
+      console.log(scope)
+      this.$router.push({ path: '/add', query: { ...scope, type: 'updata' } })
+    },
+    del (id) {
+      let url = this.api.del + '?id=' + id
+      this.$http.get(url).then((res) => {
+        this.$confirm('此操作将删除, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.tableData = res.data.data
+          this.getList()
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
+      }).catch(e => {
+        console.log(e)
+      })
+    },
+    queryName () {
+      let url = this.api.queryName + '?name=' + this.ruleForm.name
+      this.$http.get(url).then((res) => {
+        console.log(res)
+        this.tableData = res.data.data
+      }).catch(e => {
+        console.log(e)
+      })
+    },
+    reset () {
+      this.ruleForm.name = ''
+      this.getList()
     }
   }
 }
@@ -81,7 +131,7 @@ export default {
   padding-top: 20px;
   background-color: skyblue;
   .listAddTop {
-    margin-left: 250px;
+    margin-left: 325px;
     .el-form {
       .el-form-item {
         .el-form-item__content {

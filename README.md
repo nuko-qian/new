@@ -60,5 +60,5 @@ git push //把本地库的修改提交到远程库中
 
 
 
-4 安装依赖 npm install
+5.安装依赖 npm install
 

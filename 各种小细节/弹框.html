@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .model {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: rgba(0, 0, 0, .5);
+      /* display: flex;
+      align-items: center;
+      justify-content: center; */
+
+      display: none;
+    }
+
+    .model-box {
+      width: 300px;
+      height: 200px;
+      background: #fff;
+      border-radius: 4px;
+      padding: 10px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .box-btn {
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      height: 40px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+    }
+
+    .box-btn span {
+      cursor: pointer;
+    }
+
+    .tips {
+      width: 100px;
+      height: 30px;
+      border-radius: 5px;
+      background: #67c23a;
+      color: #fff;
+      text-align: center;
+      line-height: 30px;
+      margin: 0 auto;
+      transition: all 2s;
+      transform: translate();
+
+    }
+  </style>
+</head>
+
+<body>
+  <button id="show">显示</button>
+  <div id="model" class="model">
+    <div class="model-box">
+      <div class="box-content">
+        <h3 id="title">标题</h3>
+        <p id="content">内容</p>
+      </div>
+      <div class="box-btn">
+        <span id="cancel">取消</span>
+        <span id="confirm">确定</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="tips" class="tips">
+    <span id="finish">操作成功</span>
+  </div>
+</body>
+
+</html>
+<script>
+  let model = document.getElementById('model')
+  let cancel = document.getElementById('cancel')
+  let confirm = document.getElementById('confirm')
+  let show = document.getElementById('show')
+  let title = document.getElementById('title')
+  let content = document.getElementById('content')
+  let finish = document.getElementById('finish')
+
+  show.onclick = function () {
+    message('这是标题', '这是内容').then(() => {
+      console.log('确定')
+      f('操作成功', 'red', 2000)
+    }).catch(() => {
+      console.log('取消');
+      f('已取消操作', 'blue', 2000)
+    })
+  }
+
+  //封装一个函数,要什么参数就传什么参数过去
+  function f(h, c, q) {
+    tips.style.display = 'block'
+    finish.innerHTML = h
+    tips.style.background = c
+    setTimeout(function () {
+      tips.style.display = 'none'
+    }, q || 1000)
+  }
+
+
+  function message(t, c) {
+    title.innerHTML = t
+    content.innerHTML = c
+    model.style.display = 'block'
+    return new Promise((resolve, reject) => {
+      confirm.onclick = function () {
+        resolve()
+        model.style.display = 'none'
+        confirm.style.background = 'red'
+      }
+      cancel.onclick = function () {
+        reject()
+        model.style.display = 'none'
+        cancel.style.background = 'pink'
+      }
+    })
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  // 对象的属性没有次序，变量必须与属性同名，才能取到正确的值
+  // 对象的解构赋值的内部机制，是先找到同名属性，然后再赋给对应的变量。真正被赋值的是后者，而不是前者。
+
+  let { foo, bar } = { foo: 'aaa', bar: 'bbb' };
+  foo // "aaa"
+  bar // "bbb"
+  let { baz } = { foo: 'aaa', bar: 'bbb' };
+  baz // undefined 
+
+  const { log } = console;
+  log('hello') //hello
+
+
+  let obj = {
+    p: [
+      'Hello',
+      { y: 'World' }
+    ]
+  };
+
+  let { p: [x, { y }] } = obj;
+  x // "Hello"
+  y // "World"
+
+
+
+</script>

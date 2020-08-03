@@ -48,15 +48,15 @@ git push //把本地库的修改提交到远程库中
 
 2 手动选择配置
 
-![手动.png](C:/Users/Administrator/Desktop/截图/手动.png)
+![手动.png](C:/Users/Administrator/Desktop/截图/新建文件夹/手动.png)
 
 3 选择完后,等待安装完成
 
-![选择1.png](C:/Users/Administrator/Desktop/截图/选择1.png)
+![选择1.png](C:/Users/Administrator/Desktop/截图/新建文件夹/选择1.png)
 
 4.脚手架安装完成
 
-![完成.png](C:/Users/Administrator/Desktop/截图/完成.png)
+![完成.png](C:/Users/Administrator/Desktop/截图/新建文件夹/完成.png)
 
 
 

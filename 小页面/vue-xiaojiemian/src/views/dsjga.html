@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  /*  function fn() {
+     var a = 10
+   }
+   fn()
+   console.log(a); */
+
+  /* var temp = null
+  function fn1() {
+    var b = 10
+    temp = b
+  }
+  fn1()
+  console.log(temp); */
+
+
+
+  /*  var temp2 = null
+   function fn2() {
+     setTimeout(() => {
+       var c = 10
+       temp = c
+     })
+   }
+   fn2()
+   console.log(temp2); //null  因为 在clg输出之后,setTimeout还没调用完毕 */
+
+
+
+  //异步里面,有两种导出方式
+
+  function fn(callback) {
+    setTimeout(() => {
+      var a = 10
+      callback = a
+    })
+  }
+  /* fn(function (a) {
+    console.log(a);
+
+  }) */
+  export default fn()
+
+</script>
